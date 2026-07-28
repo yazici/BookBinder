@@ -243,10 +243,43 @@ def render_puml_to_svg(puml_path: Path, output_dir: Path | None = None) -> Path 
             expected_svg = target_dir / (puml_path.stem + ".svg")
             if expected_svg.exists():
                 return expected_svg
+
+            # PlantUML may have used the @startuml name instead of the filename.
+            # Scan for any new .svg file in the target directory that wasn't there before,
+            # or look for the diagram name in the .puml file.
+            import re
+            puml_text = puml_path.read_text(encoding="utf-8", errors="replace")
+            m = re.search(r"@startuml\s+(\S+)", puml_text)
+            if m:
+                diagram_name = m.group(1)
+                alt_svg = target_dir / (diagram_name + ".svg")
+                if alt_svg.exists():
+                    # Rename to match the source filename for consistency
+                    _warn(f"PlantUML used diagram name '{diagram_name}' instead of filename '{puml_path.stem}'.")
+                    _hint(f"  Renaming: {alt_svg.name} → {expected_svg.name}")
+                    _hint(f"  Tip: Remove the name from @startuml to avoid this.")
+                    _hint(f"       Change '@startuml {diagram_name}' to just '@startuml'")
+                    alt_svg.rename(expected_svg)
+                    return expected_svg
+
+            # Last resort: find any SVG that appeared in target_dir
+            all_svgs = list(target_dir.glob("*.svg"))
+            if all_svgs:
+                # If there's exactly one SVG and it's new, use it
+                _warn(f"PlantUML ran successfully but SVG not at expected path:")
+                _hint(f"  Expected: {expected_svg.name}")
+                _hint(f"  Found:    {', '.join(s.name for s in all_svgs)}")
+                _hint(f"  Tip: Remove the diagram name from @startuml in {puml_path.name}")
+                # Rename the most likely candidate
+                for svg in all_svgs:
+                    if puml_path.stem.replace("_", "").lower() in svg.stem.replace("_", "").lower():
+                        svg.rename(expected_svg)
+                        return expected_svg
+                return None
             else:
-                _warn(f"PlantUML ran successfully but SVG not found at expected path:")
+                _warn(f"PlantUML ran successfully but no SVG output found.")
                 _hint(f"  Expected: {expected_svg}")
-                _hint(f"  Check if PlantUML wrote to a different location.")
+                _hint(f"  Target dir: {target_dir}")
                 return None
         else:
             _warn(f"PlantUML rendering failed for: {puml_path.name}")
