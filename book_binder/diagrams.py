@@ -242,6 +242,11 @@ def render_puml_to_svg(puml_path: Path, output_dir: Path | None = None) -> Path 
         if result.returncode == 0:
             expected_svg = target_dir / (puml_path.stem + ".svg")
             if expected_svg.exists():
+                # Check for warnings in output even on success
+                if result.stderr and "error" in result.stderr.lower():
+                    _warn(f"PlantUML produced output but reported issues for: {puml_path.name}")
+                    for line in result.stderr.strip().split("\n")[:3]:
+                        _hint(f"  {line}")
                 return expected_svg
 
             # PlantUML may have used the @startuml name instead of the filename.
