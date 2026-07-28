@@ -558,6 +558,48 @@ li > ul, li > ol {
     text-decoration: underline;
 }
 
+/* ===== PAGE SIZE OVERRIDES (Foldout / Poster Pages) ===== */
+/* Named page rules for different paper sizes — used by @page-size markers.
+   Chromium respects these when prefer_css_page_size=True in the PDF renderer. */
+
+@page poster-a2-landscape { size: A2 landscape; margin: 10mm; }
+@page poster-a2-portrait { size: A2 portrait; margin: 10mm; }
+@page poster-a1-landscape { size: A1 landscape; margin: 10mm; }
+@page poster-a1-portrait { size: A1 portrait; margin: 10mm; }
+@page poster-a3-landscape { size: A3 landscape; margin: 12mm; }
+@page poster-a3-portrait { size: A3 portrait; margin: 12mm; }
+@page poster-tabloid-landscape { size: 432mm 279mm landscape; margin: 10mm; }
+@page poster-ledger-landscape { size: 432mm 279mm landscape; margin: 10mm; }
+
+.page-size-a2-landscape { page: poster-a2-landscape; page-break-before: always; }
+.page-size-a2-portrait { page: poster-a2-portrait; page-break-before: always; }
+.page-size-a1-landscape { page: poster-a1-landscape; page-break-before: always; }
+.page-size-a1-portrait { page: poster-a1-portrait; page-break-before: always; }
+.page-size-a3-landscape { page: poster-a3-landscape; page-break-before: always; }
+.page-size-a3-portrait { page: poster-a3-portrait; page-break-before: always; }
+.page-size-tabloid-landscape { page: poster-tabloid-landscape; page-break-before: always; }
+.page-size-ledger-landscape { page: poster-ledger-landscape; page-break-before: always; }
+
+/* Poster page content styling — remove height constraints, fill the page */
+.page-size-override { padding: 5mm; }
+.page-size-override .figure { margin: 0 auto; }
+.page-size-override .figure img {
+    max-width: 100%;
+    max-height: none;  /* Remove the 100mm height cap for poster figures */
+    width: 100%;
+    height: auto;
+    border: none;
+    box-shadow: none;
+}
+.page-size-override .figure-caption {
+    font-size: 10pt;
+    margin-top: 4mm;
+}
+.page-size-override .figure-placeholder {
+    min-height: 200mm;
+    font-size: 14pt;
+}
+
 /* ===== UTILITIES ===== */
 .page-break {
     page-break-before: always;

@@ -44,6 +44,8 @@ RE_COLOR_PALETTE = re.compile(r"<!--\s*@color-palette:\s*(.+?)\s*-->")
 RE_DEDICATION = re.compile(r"<!--\s*@dedication:\s*(.+?)\s*-->")
 RE_TEMPLATE = re.compile(r"<!--\s*@template:\s*(.+?)\s*-->")
 RE_SOURCE_DIR = re.compile(r"<!--\s*@_source_dir:\s*(.+?)\s*-->")
+RE_PAGE_SIZE_START = re.compile(r"<!--\s*@page-size:\s*(.+?)\s*-->")
+RE_PAGE_SIZE_END = re.compile(r"<!--\s*@end-page-size\s*-->")
 
 
 class MarkdownProcessor:
@@ -307,6 +309,21 @@ class MarkdownProcessor:
             )
             return f'\n\n<div class="color-palette">{swatches}</div>\n\n'
         text = RE_COLOR_PALETTE.sub(palette_replace, text)
+
+        # --- Page size overrides (foldout / poster pages) ---
+        def page_size_start_replace(m: re.Match) -> str:
+            spec = m.group(1).strip().lower()
+            # Parse "A2 landscape" or "A1 portrait" or just "A2"
+            parts = spec.split()
+            size = parts[0] if parts else "a2"
+            orientation = parts[1] if len(parts) > 1 else "landscape"
+            css_class = f"page-size-{size}-{orientation}"
+            return (
+                f'\n\n<div class="page-size-override {css_class}" '
+                f'data-page-size="{size}" data-orientation="{orientation}">\n\n'
+            )
+        text = RE_PAGE_SIZE_START.sub(page_size_start_replace, text)
+        text = RE_PAGE_SIZE_END.sub("\n\n</div>\n\n", text)
 
         # --- TOC placeholder ---
         text = RE_TOC.sub('\n\n<div id="toc-placeholder"></div>\n\n', text)
