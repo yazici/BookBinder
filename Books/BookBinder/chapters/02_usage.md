@@ -116,7 +116,7 @@ MyBook/
 Here's a minimal example:
 
 ```markdown
-<!-- @book-meta
+<!-- @​book-meta
 title: "My Project Handbook"
 subtitle: "A Complete Reference"
 author: "Your Name"
@@ -124,17 +124,17 @@ version: "1.0"
 date: "2026"
 -->
 
-<!-- @cover -->
+<!-- @​cover -->
 # My Project Handbook
 ## A Complete Reference
-<!-- @end-cover -->
+<!-- @​end-cover -->
 
-<!-- @toc -->
+<!-- @​toc -->
 
-<!-- @include: chapters/01_intro.md -->
-<!-- @include: chapters/02_details.md -->
+<!-- @​include: chapters/01_intro.md -->
+<!-- @​include: chapters/02_details.md -->
 
-<!-- @index -->
+<!-- @​index -->
 ```
 
 ### Chapter Files
@@ -142,7 +142,7 @@ date: "2026"
 Each chapter file is a standalone Markdown file. It typically starts with a chapter marker:
 
 ```markdown
-<!-- @chapter: Introduction -->
+<!-- @​chapter: Introduction -->
 
 # Introduction
 

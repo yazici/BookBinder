@@ -10,15 +10,15 @@ BookBinder extends standard Markdown with **semantic markers** — special HTML 
 All markers use the format:
 
 ```markdown
-<!-- @marker-name: value -->
+<!-- @​marker-name: value -->
 ```
 
 or for block markers:
 
 ```markdown
-<!-- @marker-start -->
+<!-- @​marker-start -->
 content
-<!-- @end-marker-start -->
+<!-- @​end-marker-start -->
 ```
 
 Because they are HTML comments, your Markdown files remain valid and render normally in GitHub, VS Code preview, or any other Markdown viewer.
@@ -31,7 +31,7 @@ Because they are HTML comments, your Markdown files remain valid and render norm
 The `@book-meta` block defines your book's metadata as YAML inside an HTML comment:
 
 ```markdown
-<!-- @book-meta
+<!-- @​book-meta
 title: "My Book Title"
 subtitle: "An Informative Subtitle"
 author: "Author Name"
@@ -76,9 +76,9 @@ file_name: "MyBookTitle"
 The `@include` directive inserts the contents of another Markdown file:
 
 ```markdown
-<!-- @include: chapters/01_introduction.md -->
-<!-- @include: chapters/02_getting_started.md -->
-<!-- @include: appendix/glossary.md -->
+<!-- @​include: chapters/01_introduction.md -->
+<!-- @​include: chapters/02_getting_started.md -->
+<!-- @​include: appendix/glossary.md -->
 ```
 
 ### Path Resolution
@@ -91,14 +91,14 @@ Includes are resolved recursively up to 10 levels deep:
 
 ```markdown
 <!-- In BOOK.md -->
-<!-- @include: parts/part1.md -->
+<!-- @​include: parts/part1.md -->
 
 <!-- In parts/part1.md -->
-<!-- @include: chapters/ch1.md -->
-<!-- @include: chapters/ch2.md -->
+<!-- @​include: chapters/ch1.md -->
+<!-- @​include: chapters/ch2.md -->
 
 <!-- In parts/chapters/ch1.md -->
-<!-- @include: sections/intro.md -->
+<!-- @​include: sections/intro.md -->
 ```
 
 <!-- @warning: Circular includes (A includes B which includes A) will trigger an error after 10 levels of recursion. -->
@@ -120,7 +120,7 @@ This renders in the output so you can spot missing files during development.
 ### Front Cover
 
 ```markdown
-<!-- @cover -->
+<!-- @​cover -->
 
 # Book Title
 
@@ -128,9 +128,9 @@ This renders in the output so you can spot missing files during development.
 
 *Description or tagline*
 
-<!-- @figure: covers/hero.png | Cover illustration -->
+<!-- @​figure: covers/hero.png | Cover illustration -->
 
-<!-- @end-cover -->
+<!-- @​end-cover -->
 ```
 
 The content between `@cover` and `@end-cover` is wrapped in a full-page cover layout. If no inline cover is provided, BookBinder uses the template's `cover.html` Jinja2 template with metadata variables.
@@ -138,13 +138,13 @@ The content between `@cover` and `@end-cover` is wrapped in a full-page cover la
 ### Back Cover
 
 ```markdown
-<!-- @back-cover -->
+<!-- @​back-cover -->
 
 ## About This Book
 
 Brief description for the back cover.
 
-<!-- @end-back-cover -->
+<!-- @​end-back-cover -->
 ```
 
 ## Chapters and Structure
@@ -155,7 +155,7 @@ Brief description for the back cover.
 ### Chapter Breaks
 
 ```markdown
-<!-- @chapter: Getting Started -->
+<!-- @​chapter: Getting Started -->
 ```
 
 This creates:
@@ -167,7 +167,7 @@ This creates:
 ### Page Breaks
 
 ```markdown
-<!-- @page-break -->
+<!-- @​page-break -->
 ```
 
 Forces a page break at that point in the output. Useful between major sections that don't warrant a full chapter marker.
@@ -175,7 +175,7 @@ Forces a page break at that point in the output. Useful between major sections t
 ### Dedication Page
 
 ```markdown
-<!-- @dedication: To my family, who tolerated the sound of a mechanical keyboard at 2 AM. -->
+<!-- @​dedication: To my family, who tolerated the sound of a mechanical keyboard at 2 AM. -->
 ```
 
 Renders a centered dedication page with elegant typography.
@@ -186,7 +186,7 @@ Renders a centered dedication page with elegant typography.
 <!-- @index-term: TOC -->
 
 ```markdown
-<!-- @toc -->
+<!-- @​toc -->
 ```
 
 Generates a clickable table of contents from all `@chapter` markers. Place it after the cover and before the first chapter include.
@@ -201,7 +201,7 @@ The TOC is automatically populated — you don't need to maintain it manually.
 ### Basic Figure
 
 ```markdown
-<!-- @figure: diagrams/architecture.png | System architecture overview -->
+<!-- @​figure: diagrams/architecture.png | System architecture overview -->
 ```
 
 This renders a numbered figure with caption: "Figure 1. System architecture overview"
@@ -209,7 +209,7 @@ This renders a numbered figure with caption: "Figure 1. System architecture over
 ### Figure with Explicit ID
 
 ```markdown
-<!-- @figure: diagrams/flow.png | Data flow diagram | data-flow -->
+<!-- @​figure: diagrams/flow.png | Data flow diagram | data-flow -->
 ```
 
 The third parameter sets an explicit ID for cross-referencing.
@@ -226,7 +226,7 @@ Figures are resolved in this order:
 ### Cross-Referencing Figures
 
 ```markdown
-As shown in <!-- @fig-ref: data-flow -->, the data flows through three stages.
+As shown in <!-- @​fig-ref: data-flow -->, the data flows through three stages.
 ```
 
 Renders as: "As shown in Figure 2, the data flows through three stages." — with a clickable link to the figure.
@@ -239,7 +239,7 @@ Renders as: "As shown in Figure 2, the data flows through three stages." — wit
 BookBinder can render `.puml` files directly:
 
 ```markdown
-<!-- @figure: diagrams/sequence.puml | Authentication sequence -->
+<!-- @​figure: diagrams/sequence.puml | Authentication sequence -->
 ```
 
 If Java and PlantUML are available, the `.puml` file is rendered to SVG automatically. If a pre-rendered `.svg` file exists alongside the `.puml`, it's used without re-rendering.
@@ -256,7 +256,7 @@ BookBinder provides four callout types for highlighting important information:
 ### Tip
 
 ```markdown
-<!-- @tip: Use `--html-only` during development for faster iteration. -->
+<!-- @​tip: Use `--html-only` during development for faster iteration. -->
 ```
 
 <!-- @tip: This is how a tip callout looks in the rendered output. -->
@@ -264,7 +264,7 @@ BookBinder provides four callout types for highlighting important information:
 ### Note
 
 ```markdown
-<!-- @note: This feature requires BookBinder 1.0 or later. -->
+<!-- @​note: This feature requires BookBinder 1.0 or later. -->
 ```
 
 <!-- @note: This is how a note callout looks in the rendered output. -->
@@ -272,7 +272,7 @@ BookBinder provides four callout types for highlighting important information:
 ### Warning
 
 ```markdown
-<!-- @warning: This operation cannot be undone. Back up your data first. -->
+<!-- @​warning: This operation cannot be undone. Back up your data first. -->
 ```
 
 <!-- @warning: This is how a warning callout looks in the rendered output. -->
@@ -280,7 +280,7 @@ BookBinder provides four callout types for highlighting important information:
 ### Important
 
 ```markdown
-<!-- @important: You must run bootstrap before first use. -->
+<!-- @​important: You must run bootstrap before first use. -->
 ```
 
 <!-- @important: This is how an important callout looks in the rendered output. -->
@@ -288,7 +288,7 @@ BookBinder provides four callout types for highlighting important information:
 ### Sidebar
 
 ```markdown
-<!-- @sidebar: Historical context — BookBinder was originally designed for game documentation. -->
+<!-- @​sidebar: Historical context — BookBinder was originally designed for game documentation. -->
 ```
 
 Sidebars are styled as supplementary information panels, visually distinct from the main text flow.
@@ -303,8 +303,8 @@ Sidebars are styled as supplementary information panels, visually distinct from 
 Sprinkle index term markers throughout your text:
 
 ```markdown
-<!-- @index-term: authentication -->
-<!-- @index-term: OAuth 2.0 -->
+<!-- @​index-term: authentication -->
+<!-- @​index-term: OAuth 2.0 -->
 ```
 
 These are invisible in the output but register the term at that location.
@@ -312,7 +312,7 @@ These are invisible in the output but register the term at that location.
 ### Generating the Index
 
 ```markdown
-<!-- @index -->
+<!-- @​index -->
 ```
 
 Place this at the end of your book. It generates an alphabetical back-of-book index with page/section references for every marked term.
@@ -325,12 +325,12 @@ Place this at the end of your book. It generates an alphabetical back-of-book in
 ### Two-Column Layout
 
 ```markdown
-<!-- @layout: two-column -->
+<!-- @​layout: two-column -->
 
 Content here flows in two columns. Useful for reference tables,
 glossaries, or dense information.
 
-<!-- @layout: single -->
+<!-- @​layout: single -->
 ```
 
 Switch back to single-column with `<!-- @layout: single -->`.
@@ -340,13 +340,13 @@ Switch back to single-column with `<!-- @layout: single -->`.
 <!-- @index-term: foreword -->
 
 ```markdown
-<!-- @foreword -->
+<!-- @​foreword -->
 
 This book represents three years of development experience...
 
 *— Foreword Author*
 
-<!-- @end-foreword -->
+<!-- @​end-foreword -->
 ```
 
 The foreword section receives special styling (typically italic, indented) appropriate for introductory material written by someone other than the main author.
@@ -358,7 +358,7 @@ The foreword section receives special styling (typically italic, indented) appro
 Display a visual color palette (useful for design documentation):
 
 ```markdown
-<!-- @color-palette: #2c5a8a, #4a9eff, #f0f4f8, #1a3a5c, #ffffff -->
+<!-- @​color-palette: #2c5a8a, #4a9eff, #f0f4f8, #1a3a5c, #ffffff -->
 ```
 
 Renders as a row of color swatches with hex values.
@@ -368,7 +368,7 @@ Renders as a row of color swatches with hex values.
 You can select a template outside the metadata block:
 
 ```markdown
-<!-- @template: technical -->
+<!-- @​template: technical -->
 ```
 
 This overrides the template specified in `@book-meta` (but CLI `--template` takes highest priority).

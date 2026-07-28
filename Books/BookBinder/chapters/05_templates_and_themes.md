@@ -36,10 +36,10 @@ Three ways to select a template (in priority order):
 python make_a_book.py BOOK.md --template modern
 
 # 2. Inline directive in Markdown
-<!-- @template: modern -->
+<!-- @​template: modern -->
 
 # 3. In @book-meta YAML
-<!-- @book-meta
+<!-- @​book-meta
 template: modern
 -->
 ```
@@ -77,7 +77,7 @@ python make_a_book.py --list-themes
 python make_a_book.py BOOK.md --theme warm
 
 # In @book-meta YAML
-<!-- @book-meta
+<!-- @​book-meta
 theme: warm
 -->
 ```
@@ -87,7 +87,7 @@ theme: warm
 Override just the accent color without creating a full custom theme:
 
 ```markdown
-<!-- @book-meta
+<!-- @​book-meta
 theme: warm
 accent_color: "#e67e22"
 -->
@@ -357,7 +357,7 @@ When creating custom templates and themes, keep these principles in mind:
 Here's a complete example of a book using a custom theme with accent override:
 
 ```markdown
-<!-- @book-meta
+<!-- @​book-meta
 title: "Project Phoenix Documentation"
 subtitle: "Internal Developer Reference"
 author: "Phoenix Team"
@@ -369,24 +369,24 @@ accent_color: "#e67e22"
 file_name: "PhoenixDocs"
 -->
 
-<!-- @cover -->
+<!-- @​cover -->
 # Project Phoenix
 ## Internal Developer Reference
 *Version 3.1 — 2026*
-<!-- @end-cover -->
+<!-- @​end-cover -->
 
-<!-- @toc -->
+<!-- @​toc -->
 
-<!-- @include: chapters/01_overview.md -->
-<!-- @include: chapters/02_api.md -->
-<!-- @include: chapters/03_deployment.md -->
+<!-- @​include: chapters/01_overview.md -->
+<!-- @​include: chapters/02_api.md -->
+<!-- @​include: chapters/03_deployment.md -->
 
-<!-- @back-cover -->
+<!-- @​back-cover -->
 ## Project Phoenix
 Internal documentation. Not for external distribution.
-<!-- @end-back-cover -->
+<!-- @​end-back-cover -->
 
-<!-- @index -->
+<!-- @​index -->
 ```
 
 Build with:
