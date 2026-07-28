@@ -1,0 +1,16 @@
+# Dark theme — amber on dark background
+name: dark
+description: Dark background with warm amber accents for screen reading
+
+colors:
+  accent: "#e0a050"
+  accent-light: "#2a2520"
+  accent-dark: "#c08030"
+  text: "#e8e0d8"
+  bg: "#1a1816"
+  code-bg: "#252220"
+
+fonts:
+  heading: "'Georgia', 'Times New Roman', serif"
+  body: "'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+  mono: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace"

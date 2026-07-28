@@ -1,0 +1,16 @@
+# Cool theme — steel blue on white
+name: cool
+description: Cool steel blue for technical and modern books
+
+colors:
+  accent: "#4a7fb5"
+  accent-light: "#f0f5fa"
+  accent-dark: "#2c5a8a"
+  text: "#1a2a3a"
+  bg: "#ffffff"
+  code-bg: "#f5f8fc"
+
+fonts:
+  heading: "'Georgia', 'Times New Roman', serif"
+  body: "'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+  mono: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace"

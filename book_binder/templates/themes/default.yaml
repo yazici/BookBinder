@@ -1,0 +1,16 @@
+# Default theme — professional blue on white
+name: default
+description: Professional blue accent on clean white background
+
+colors:
+  accent: "#2c5a8a"
+  accent-light: "#f0f4f8"
+  accent-dark: "#1a3a5c"
+  text: "#1a1a1a"
+  bg: "#ffffff"
+  code-bg: "#f7f8fa"
+
+fonts:
+  heading: "'Georgia', 'Times New Roman', serif"
+  body: "'Charter', 'Georgia', 'Times New Roman', serif"
+  mono: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace"

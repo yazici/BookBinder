@@ -1,0 +1,11 @@
+<!-- BookBinder — Modern Template: Front Cover
+     Full-bleed accent color with bold left-aligned typography.
+-->
+<div class="cover-page">
+    <div class="cover-content">
+        <h1 class="cover-title">{{title}}</h1>
+        {% if subtitle %}<p class="cover-subtitle">{{subtitle}}</p>{% endif %}
+        {% if author %}<p class="cover-author">{{author}}</p>{% endif %}
+        {% if version %}<p class="cover-version">{{version}}</p>{% endif %}
+    </div>
+</div>

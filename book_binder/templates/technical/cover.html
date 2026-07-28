@@ -1,0 +1,12 @@
+<!-- BookBinder — Technical Template: Front Cover
+     Monospace title, top accent bar, left-aligned.
+-->
+<div class="cover-page">
+    <div class="cover-content">
+        <h1 class="cover-title">{{title}}</h1>
+        {% if subtitle %}<p class="cover-subtitle">{{subtitle}}</p>{% endif %}
+        {% if author %}<p class="cover-author">{{author}}</p>{% endif %}
+        {% if version %}<p class="cover-version">v{{version}}</p>{% endif %}
+        {% if date %}<p class="cover-date">{{date}}</p>{% endif %}
+    </div>
+</div>

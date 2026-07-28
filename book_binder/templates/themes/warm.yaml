@@ -1,0 +1,16 @@
+# Warm theme — golden/amber tones on white
+name: warm
+description: Warm golden accent for inviting, approachable books
+
+colors:
+  accent: "#b78a51"
+  accent-light: "#faf6f0"
+  accent-dark: "#7a552d"
+  text: "#29251f"
+  bg: "#ffffff"
+  code-bg: "#faf8f5"
+
+fonts:
+  heading: "'Georgia', 'Times New Roman', serif"
+  body: "'Charter', 'Georgia', serif"
+  mono: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace"

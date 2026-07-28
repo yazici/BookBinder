@@ -1,0 +1,16 @@
+# Academic theme — deep red on white, scholarly feel
+name: academic
+description: Deep crimson accent for academic and scholarly publications
+
+colors:
+  accent: "#8b0000"
+  accent-light: "#fdf5f5"
+  accent-dark: "#5c0000"
+  text: "#1a1a1a"
+  bg: "#ffffff"
+  code-bg: "#f9f7f7"
+
+fonts:
+  heading: "'Georgia', 'Times New Roman', serif"
+  body: "'Charter', 'Georgia', 'Times New Roman', serif"
+  mono: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace"

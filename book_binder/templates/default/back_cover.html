@@ -1,0 +1,13 @@
+<!-- BookBinder — Default Template: Back Cover
+     Variables available: {{title}}, {{subtitle}}, {{author}}, {{version}}, {{date}}, {{publisher}}, {{isbn}}
+-->
+<div class="back-cover page-break">
+    <div class="back-cover-content">
+        <p class="back-cover-title">{{title}}</p>
+        {% if author %}<p class="back-cover-author">{{author}}</p>{% endif %}
+        {% if version or date %}
+        <p class="back-cover-version">{{version}}{% if version and date %} &mdash; {% endif %}{{date}}</p>
+        {% endif %}
+        {% if isbn %}<p class="back-cover-version">ISBN: {{isbn}}</p>{% endif %}
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<!-- BookBinder — Technical Template: Back Cover -->
+<div class="back-cover page-break">
+    <div class="back-cover-content">
+        <p class="back-cover-title">{{title}}</p>
+        {% if author %}<p class="back-cover-author">{{author}}</p>{% endif %}
+        {% if version %}<p class="back-cover-version">v{{version}}{% if date %} — {{date}}{% endif %}</p>{% endif %}
+    </div>
+</div>

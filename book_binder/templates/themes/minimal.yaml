@@ -1,0 +1,16 @@
+# Minimal theme — monochrome, no-frills
+name: minimal
+description: Clean monochrome for distraction-free reading
+
+colors:
+  accent: "#333333"
+  accent-light: "#f5f5f5"
+  accent-dark: "#111111"
+  text: "#222222"
+  bg: "#ffffff"
+  code-bg: "#f8f8f8"
+
+fonts:
+  heading: "'Helvetica Neue', Arial, sans-serif"
+  body: "'Helvetica Neue', Arial, sans-serif"
+  mono: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace"

@@ -1,0 +1,572 @@
+/* =============================================================================
+   BookBinder — Default Template Stylesheet
+   Clean, professional book layout with white background and serif headings.
+   
+   CSS custom properties (--accent, --bg, etc.) are injected by the renderer
+   from the active theme YAML file. This CSS is fully previewable in a browser
+   if you define the :root variables manually.
+   ============================================================================= */
+
+@page {
+    size: var(--paper-size, A4) var(--orientation, portrait);
+    margin: 22mm 20mm 28mm 20mm;
+    @bottom-center {
+        content: counter(page);
+        font-family: var(--font-body);
+        font-size: 9pt;
+        color: var(--accent);
+    }
+}
+@page :first {
+    margin: 0;
+    @bottom-center { content: none; }
+}
+
+/* ===== RESET & BASE ===== */
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 10.5pt;
+    line-height: 1.7;
+    background: var(--bg);
+    text-align: justify;
+    text-justify: inter-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+/* ===== COVER PAGE ===== */
+.cover-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40mm 30mm;
+    page-break-after: always;
+    background: var(--bg);
+    border-bottom: 3mm solid var(--accent);
+}
+.cover-content {
+    max-width: 160mm;
+}
+.cover-title {
+    font-family: var(--font-heading);
+    font-size: 36pt;
+    color: var(--accent-dark);
+    margin: 0 0 6mm;
+    line-height: 1.15;
+    letter-spacing: -0.5pt;
+}
+.cover-subtitle {
+    font-family: var(--font-heading);
+    font-size: 14pt;
+    color: var(--accent);
+    font-weight: normal;
+    margin: 0 0 15mm;
+    font-style: italic;
+}
+.cover-author {
+    font-size: 12pt;
+    color: var(--text);
+    margin: 0 0 4mm;
+    font-weight: 600;
+}
+.cover-version,
+.cover-date {
+    font-size: 9pt;
+    color: var(--accent);
+    margin: 0 0 2mm;
+}
+.cover-figure {
+    margin: 15mm 0;
+    max-width: 80%;
+}
+.cover-figure img {
+    max-width: 100%;
+    max-height: 80mm;
+    border-radius: 2mm;
+    box-shadow: 0 2mm 8mm rgba(0, 0, 0, 0.12);
+}
+
+/* ===== BACK COVER ===== */
+.back-cover {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40mm 30mm;
+    background: var(--accent-dark);
+    color: white;
+    page-break-before: always;
+}
+.back-cover-content {
+    max-width: 140mm;
+}
+.back-cover-title {
+    font-family: var(--font-heading);
+    font-size: 20pt;
+    margin: 0 0 5mm;
+    color: white;
+}
+.back-cover-author {
+    font-size: 11pt;
+    margin: 0 0 3mm;
+    color: rgba(255, 255, 255, 0.8);
+}
+.back-cover-version {
+    font-size: 9pt;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* ===== DEDICATION ===== */
+.dedication-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    page-break-after: always;
+    padding: 60mm 40mm;
+}
+.dedication-text {
+    font-family: var(--font-heading);
+    font-size: 13pt;
+    font-style: italic;
+    color: var(--accent);
+    max-width: 100mm;
+    line-height: 1.8;
+}
+
+/* ===== FOREWORD ===== */
+.foreword {
+    page-break-after: always;
+    padding: 10mm 0;
+}
+.foreword h1 {
+    font-family: var(--font-heading);
+    font-size: 22pt;
+    color: var(--accent-dark);
+    margin-bottom: 8mm;
+    text-align: left;
+}
+.foreword-author {
+    text-align: right;
+    font-style: italic;
+    color: var(--accent);
+    margin-top: 10mm;
+    font-size: 10pt;
+}
+
+/* ===== TABLE OF CONTENTS ===== */
+.toc {
+    page-break-after: always;
+    padding: 10mm 0;
+}
+.toc-heading {
+    font-family: var(--font-heading);
+    font-size: 24pt;
+    color: var(--accent-dark);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4mm;
+    margin-bottom: 10mm;
+    text-align: left;
+}
+.toc-list {
+    padding: 0;
+}
+.toc-entry {
+    margin: 3mm 0;
+}
+.toc-link {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 11pt;
+    padding: 1.5mm 0;
+}
+.toc-link:hover {
+    color: var(--accent);
+}
+.toc-number {
+    font-weight: bold;
+    color: var(--accent);
+    min-width: 10mm;
+    font-size: 10pt;
+}
+.toc-title {
+    flex-shrink: 0;
+}
+.toc-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--accent);
+    margin: 0 3mm;
+    min-width: 10mm;
+    opacity: 0.5;
+}
+
+/* ===== CHAPTER HEADERS ===== */
+.chapter-break {
+    page-break-before: always;
+}
+.chapter-header {
+    margin-bottom: 12mm;
+    padding-bottom: 6mm;
+    border-bottom: 2px solid var(--accent);
+}
+.chapter-header h1 {
+    font-family: var(--font-heading);
+    font-size: 26pt;
+    color: var(--accent-dark);
+    margin: 0;
+    text-align: left;
+}
+
+/* ===== HEADINGS ===== */
+h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+h1 {
+    font-family: var(--font-heading);
+    font-size: 24pt;
+    color: var(--accent-dark);
+    margin-top: 0;
+    margin-bottom: 5mm;
+    line-height: 1.2;
+    text-align: left;
+}
+h2 {
+    font-family: var(--font-heading);
+    font-size: 16pt;
+    color: var(--accent-dark);
+    border-bottom: 1px solid var(--accent-light);
+    padding-bottom: 2mm;
+    margin-top: 10mm;
+    margin-bottom: 4mm;
+    text-align: left;
+}
+h3 {
+    font-family: var(--font-heading);
+    font-size: 13pt;
+    color: var(--accent);
+    margin-top: 7mm;
+    margin-bottom: 3mm;
+    text-align: left;
+}
+h4 {
+    font-size: 11pt;
+    font-weight: bold;
+    color: var(--accent-dark);
+    margin-top: 5mm;
+    margin-bottom: 2mm;
+    text-align: left;
+}
+
+/* ===== BODY TEXT ===== */
+p {
+    margin: 0 0 3.5mm;
+    orphans: 3;
+    widows: 3;
+}
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+strong {
+    color: var(--accent-dark);
+}
+blockquote {
+    margin: 5mm 0;
+    padding: 4mm 6mm;
+    background: var(--accent-light);
+    border-left: 3mm solid var(--accent);
+    font-style: italic;
+    border-radius: 0 2mm 2mm 0;
+}
+blockquote p {
+    margin: 0;
+}
+
+/* ===== CODE ===== */
+code {
+    font-family: var(--font-mono);
+    font-size: 9pt;
+    background: var(--code-bg);
+    padding: 0.5mm 2mm;
+    border-radius: 1mm;
+}
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 4mm 5mm;
+    border-radius: 2mm;
+    overflow-x: auto;
+    margin: 5mm 0;
+    line-height: 1.45;
+    page-break-inside: avoid;
+}
+pre code {
+    background: none;
+    padding: 0;
+    font-size: 8.5pt;
+}
+
+/* ===== TABLES ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th {
+    background: var(--accent);
+    color: white;
+    padding: 2.5mm 3.5mm;
+    text-align: left;
+    font-weight: 600;
+    font-size: 9pt;
+}
+td {
+    padding: 2.5mm 3.5mm;
+    border-bottom: 1px solid var(--accent-light);
+}
+tr:nth-child(even) td {
+    background: var(--accent-light);
+}
+
+/* ===== LISTS ===== */
+ul, ol {
+    margin: 2mm 0 4mm;
+    padding-left: 7mm;
+}
+li {
+    margin-bottom: 1.5mm;
+}
+li > ul, li > ol {
+    margin-top: 1mm;
+    margin-bottom: 1mm;
+}
+
+/* ===== FIGURES ===== */
+.figure {
+    margin: 8mm auto;
+    text-align: center;
+    page-break-inside: avoid;
+    max-width: 100%;
+}
+.figure img {
+    max-width: 100%;
+    max-height: 100mm;
+    border-radius: 2mm;
+    box-shadow: 0 1mm 4mm rgba(0, 0, 0, 0.08);
+}
+.figure-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 45mm;
+    padding: 5mm 8mm;
+    background: var(--accent-light);
+    border: 2px dashed var(--accent);
+    border-radius: 2mm;
+    color: var(--accent);
+    font-size: 9pt;
+    font-style: italic;
+    gap: 2mm;
+}
+.figure-placeholder-caption {
+    font-size: 10pt;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    color: var(--accent-dark);
+    line-height: 1.4;
+}
+.figure-placeholder-path {
+    font-size: 7.5pt;
+    font-family: var(--font-mono);
+    opacity: 0.6;
+    text-align: center;
+    font-style: normal;
+}
+.figure-caption {
+    margin-top: 2.5mm;
+    font-size: 9pt;
+    font-style: italic;
+    color: var(--accent);
+    text-align: center;
+}
+.figure-number {
+    font-weight: bold;
+    color: var(--accent-dark);
+}
+.fig-ref {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+.fig-ref:hover {
+    text-decoration: underline;
+}
+
+/* ===== CALLOUT BOXES ===== */
+.callout {
+    margin: 6mm 0;
+    padding: 4.5mm 6mm;
+    border-radius: 2.5mm;
+    page-break-inside: avoid;
+    font-size: 9.5pt;
+    line-height: 1.5;
+}
+.callout-header {
+    font-weight: bold;
+    margin-bottom: 1.5mm;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3pt;
+}
+.callout-tip {
+    background: #f0f9f0;
+    border-left: 3.5mm solid #4caf50;
+}
+.callout-tip .callout-header { color: #2e7d32; }
+.callout-tip .callout-header::before { content: "\1F4A1  Tip"; }
+
+.callout-note {
+    background: #f0f5ff;
+    border-left: 3.5mm solid #2196f3;
+}
+.callout-note .callout-header { color: #1565c0; }
+.callout-note .callout-header::before { content: "\1F4DD  Note"; }
+
+.callout-warning {
+    background: #fff8f0;
+    border-left: 3.5mm solid #ff9800;
+}
+.callout-warning .callout-header { color: #e65100; }
+.callout-warning .callout-header::before { content: "\26A0\FE0F  Warning"; }
+
+.callout-important {
+    background: #fdf0f0;
+    border-left: 3.5mm solid #e53935;
+}
+.callout-important .callout-header { color: #b71c1c; }
+.callout-important .callout-header::before { content: "\2757  Important"; }
+
+.callout-sidebar {
+    background: var(--accent-light);
+    border-left: 3.5mm solid var(--accent);
+}
+.callout-sidebar .callout-header { color: var(--accent-dark); }
+.callout-sidebar .callout-header::before { content: "\1F4CC  "; }
+
+/* ===== COLOR PALETTE ===== */
+.color-palette {
+    display: flex;
+    gap: 3mm;
+    margin: 5mm 0;
+    flex-wrap: wrap;
+}
+.color-swatch {
+    width: 14mm;
+    height: 14mm;
+    border-radius: 2mm;
+    box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+.color-swatch::after {
+    content: attr(data-color);
+    position: absolute;
+    bottom: -4.5mm;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6pt;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+/* ===== TWO-COLUMN LAYOUT ===== */
+.two-column {
+    column-count: 2;
+    column-gap: 8mm;
+    column-rule: 1px solid var(--accent-light);
+}
+.two-column h3,
+.two-column h4 {
+    break-after: avoid;
+}
+.two-column .figure {
+    break-inside: avoid;
+}
+
+/* ===== INDEX ===== */
+.book-index {
+    padding: 10mm 0;
+}
+.index-title {
+    font-family: var(--font-heading);
+    font-size: 24pt;
+    color: var(--accent-dark);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4mm;
+    margin-bottom: 8mm;
+    text-align: left;
+}
+.index-columns {
+    column-count: 3;
+    column-gap: 6mm;
+}
+.index-letter-group {
+    break-inside: avoid;
+    margin-bottom: 4mm;
+}
+.index-letter {
+    font-family: var(--font-heading);
+    font-size: 14pt;
+    color: var(--accent);
+    margin: 0 0 2mm;
+    border: none;
+    padding: 0;
+}
+.index-entry {
+    margin: 1mm 0;
+    font-size: 9pt;
+}
+.index-link {
+    color: var(--text);
+    text-decoration: none;
+}
+.index-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* ===== UTILITIES ===== */
+.page-break {
+    page-break-before: always;
+}
+.no-break {
+    page-break-inside: avoid;
+}
+hr {
+    border: none;
+    border-top: 1px solid var(--accent-light);
+    margin: 8mm 0;
+}

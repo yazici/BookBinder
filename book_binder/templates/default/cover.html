@@ -1,0 +1,17 @@
+<!-- BookBinder — Default Template: Front Cover
+     Variables available: {{title}}, {{subtitle}}, {{author}}, {{version}}, {{date}}, {{cover_image}}
+-->
+<div class="cover-page">
+    <div class="cover-content">
+        <h1 class="cover-title">{{title}}</h1>
+        {% if subtitle %}<p class="cover-subtitle">{{subtitle}}</p>{% endif %}
+        {% if cover_image %}
+        <div class="cover-figure">
+            <img src="{{cover_image}}" alt="{{title}}">
+        </div>
+        {% endif %}
+        {% if author %}<p class="cover-author">{{author}}</p>{% endif %}
+        {% if version %}<p class="cover-version">Version {{version}}</p>{% endif %}
+        {% if date %}<p class="cover-date">{{date}}</p>{% endif %}
+    </div>
+</div>
